@@ -1,8 +1,7 @@
 Ansible-role-node-exporter
 =========
 
-Ce rôle Ansible installe et configure **Node Exporter**, un agent Prometheus conçu pour exposer les métriques matérielles et <br>
-système des environnements Linux.
+Ce rôle Ansible installe et configure **Node Exporter**, un agent Prometheus conçu pour exposer les métriques matérielles et système des environnements Linux.
 
 Exigences
 ------------

@@ -1,20 +1,20 @@
 ---
 # tasks file for ansible-role-node-exporter
 - name: Create group for node-exporter user
-  group: 
+  ansible.builtin.group:
     name: "{{ node_exporter_group }}"
     state: present
     system: true
 
 - name: Create user for node-exporter
-  user:
+  ansible.builtin.user:
     name: "{{ node_exporter_user }}"
     group: "{{ node_exporter_group }}"
     system: true
     create_home: false
 
 - name: Download node-exporter archive
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ node_exporter_download_url }}"
     dest: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_architecture }}.tar.gz"
 
@@ -25,7 +25,7 @@
     remote_src: true
 
 - name: Copy the node-exporter binary in "{{ node_exporter_bin_dir }}"
-  copy:
+  ansible.builtin.copy:
     src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_architecture }}/node_exporter"
     dest: "{{ node_exporter_bin_dir }}/node_exporter"
     mode: '0755'
@@ -34,13 +34,13 @@
     remote_src: true
 
 - name: Configure node-exporter service
-  template:
+  ansible.builtin.template:
     src: "node_exporter.service.j2"
     dest: "/etc/systemd/system/node_exporter.service"
   notify: Restart node-exporter
 
 - name: Enable and start node-exporter
-  systemd:
+  ansible.builtin.systemd:
     name: node_exporter
     state: started
     enabled: true

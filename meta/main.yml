@@ -1,5 +1,7 @@
 galaxy_info:
   author: William Bridge
+  role_name: node_exporter
+  namespace: willbrid
   description: Node exporter installation for Linux distributions
   license: license (BSD, MIT)
   min_ansible_version: "2.10"

@@ -1,6 +1,8 @@
 Ansible-role-node-exporter
 =========
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/willbrid/ansible-role-node-exporter/blob/main/LICENSE) [![CI](https://github.com/willbrid/ansible-role-node-exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/willbrid/ansible-role-node-exporter/actions/workflows/ci.yml)
+
 Ce rôle Ansible installe et configure **node_exporter**, un agent Prometheus conçu pour exposer les métriques matérielles et système des environnements Linux.
 
 Exigences
@@ -87,7 +89,7 @@ cd $HOME/install-node-exporter && ansible-playbook -i hosts.ini playbook.yml
 Licence
 -------
 
-BSD,MIT
+MIT
 
 Informations sur l'auteur
 ------------------

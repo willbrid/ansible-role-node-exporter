@@ -1,13 +1,22 @@
+# Certificates and keys
 *.jks
 *.p8
 *.p12
 *.key
-*.mobileprovision
-*.orig.*
-web-build/
 
-# macOS
-.DS_Store
+# Python
+*/__pycache__
+*.pyc
+.cache
 
-# ansible
+# Ansible
 .ansible/
+*.retry
+*.orig.*
+
+# Editors
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/

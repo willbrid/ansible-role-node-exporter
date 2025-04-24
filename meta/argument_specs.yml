@@ -3,7 +3,7 @@ argument_specs:
   main:
     short_description: "Install node exporter for Linux"
     description:
-      - "Install node exporter binary for Linux distributions : RedHat and Debian"
+      - "Install node exporter binary for RedHat and Debian distros"
     author: "WillBrid"
     options:
       node_exporter_version:
@@ -14,8 +14,7 @@ argument_specs:
           - "node exporter version in x.y.z form"
       node_exporter_download_url:
         type: str
-        required: false
-        default: "https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-1.9.0.linux-amd64.tar.gz"
+        required: true
         description:
           - "download url for node exporter .tar.gz file"
       node_exporter_port:

@@ -41,14 +41,14 @@ vim $HOME/install-node-exporter/requirements.yml
 ```yaml
 - name: ansible-role-node-exporter
   src: https://github.com/willbrid/ansible-role-node-exporter.git
-  version: main
+  version: v0.0.4
 ```
 
 ```bash
 cd $HOME/install-node-exporter && ansible-galaxy install -r requirements.yml --roles-path roles
 ```
 
-> Note: On suppose qu’un fichier `hosts.ini` (dans le repertoire $HOME/install-repo-installer) est défini, contenant l’inventaire des serveurs utilisant des distributions Debian ou RedHat.
+> Note: On suppose qu’un fichier `hosts.ini` (dans le repertoire $HOME/install-repo-installer) est défini, contenant l’inventaire des serveurs de groupe `monitoring`, utilisant des distributions Debian ou RedHat.
 
 - Utilisation du rôle dans un playbook
 
@@ -62,10 +62,10 @@ vim $HOME/install-node-exporter/playbook.yml
   become: yes
 
   vars:
-  - node_exporter_version: "1.9.0"
+    node_exporter_version: "1.9.0"
 
   roles:
-  - ansible-role-node-exporter
+    - ansible-role-node-exporter
 ```
 
 ```

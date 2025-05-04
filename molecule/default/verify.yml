@@ -10,6 +10,7 @@
     - name: Get node exporter binary version
       ansible.builtin.command: "{{ node_exporter_bin_dir }}/node_exporter --version"
       register: node_exporter_info
+      changed_when: false
     - name: Check node_exporter correct version
       ansible.builtin.assert:
         that:

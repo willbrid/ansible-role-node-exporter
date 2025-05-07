@@ -1,4 +1,5 @@
 ---
 host_architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
 node_exporter_download_base_url: "https://github.com/prometheus/node_exporter/releases/download"
-node_exporter_download_url: "{{ node_exporter_download_base_url }}/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-{{ host_architecture }}.tar.gz"
+node_exporter_archive_filename: "node_exporter-{{ node_exporter_version }}.linux-{{ host_architecture }}.tar.gz"
+node_exporter_download_url: "{{ node_exporter_download_base_url }}/v{{ node_exporter_version }}/{{ node_exporter_archive_filename }}"

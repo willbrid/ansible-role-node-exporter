@@ -12,11 +12,6 @@ argument_specs:
         default: "1.9.0"
         description:
           - "node exporter version in x.y.z form"
-      node_exporter_download_url:
-        type: str
-        required: true
-        description:
-          - "download url for node exporter .tar.gz file"
       node_exporter_port:
         type: str
         required: false

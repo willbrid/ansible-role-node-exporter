@@ -30,9 +30,21 @@ argument_specs:
         default: "node_exporter"
         description:
           - "node exporter user service"
+      node_exporter_user_uid:
+        type: int
+        required: false
+        default: -1
+        description:
+          - "node exporter user uid"
       node_exporter_group:
         type: str
         required: false
         default: "node_exporter"
         description:
           - "node exporter group for node exporter user"
+      node_exporter_group_gid:
+        type: int
+        required: false
+        default: -1
+        description:
+          - "node exporter user group gid"

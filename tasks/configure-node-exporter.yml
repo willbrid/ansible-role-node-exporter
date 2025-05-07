@@ -1,0 +1,14 @@
+---
+- name: Configure node-exporter service
+  ansible.builtin.template:
+    src: "node_exporter.service.j2"
+    dest: "/etc/systemd/system/node_exporter.service"
+    mode: 0755
+  notify: Restart node-exporter
+
+- name: Enable and start node-exporter service
+  ansible.builtin.systemd_service:
+    name: node_exporter
+    state: started
+    daemon_reload: true
+    enabled: true

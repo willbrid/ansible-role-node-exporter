@@ -1,47 +1,17 @@
 ---
-- name: Create group for node-exporter user
-  ansible.builtin.group:
-    name: "{{ node_exporter_group }}"
-    state: present
-    system: true
+- name: Get node_exporter installed version
+  ansible.builtin.command: "node_exporter --version"
+  register: node_exporter_check_info
+  changed_when: false
+  failed_when: false
 
-- name: Create user for node-exporter
-  ansible.builtin.user:
-    name: "{{ node_exporter_user }}"
-    group: "{{ node_exporter_group }}"
-    system: true
-    create_home: false
+- name: Check if node_exporter is already installed with the correct version
+  ansible.builtin.set_fact:
+    node_exporter_already_installed: "{{ node_exporter_check_info is defined and node_exporter_check_info.stdout is ansible.builtin.search(node_exporter_version) }}"
 
-- name: Download node-exporter archive
-  ansible.builtin.get_url:
-    url: "{{ node_exporter_download_url }}"
-    dest: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_architecture }}.tar.gz"
-    mode: 0755
-
-- name: Extract node-exporter archive
-  ansible.builtin.unarchive:
-    src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_architecture }}.tar.gz"
-    dest: "/tmp"
-    remote_src: true
-
-- name: Copy the node-exporter binary in "{{ node_exporter_bin_dir }}"
-  ansible.builtin.copy:
-    src: "/tmp/node_exporter-{{ node_exporter_version }}.linux-{{ node_exporter_architecture }}/node_exporter"
-    dest: "{{ node_exporter_bin_dir }}/node_exporter"
-    mode: 0755
-    owner: "{{ node_exporter_user }}"
-    group: "{{ node_exporter_group }}"
-    remote_src: true
+- name: Install node-exporter
+  ansible.builtin.include_tasks: "install-node-exporter.yml"
+  when: not node_exporter_already_installed
 
 - name: Configure node-exporter service
-  ansible.builtin.template:
-    src: "node_exporter.service.j2"
-    dest: "/etc/systemd/system/node_exporter.service"
-    mode: 0755
-  notify: Restart node-exporter
-
-- name: Enable and start node-exporter
-  ansible.builtin.systemd:
-    name: node_exporter
-    state: started
-    enabled: true
+  ansible.builtin.import_tasks: "configure-node-exporter.yml"

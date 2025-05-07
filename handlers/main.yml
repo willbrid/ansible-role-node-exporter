@@ -1,14 +1,14 @@
 ---
-# handlers file for ansible-role-node-exporter
 - name: Restart node-exporter
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
     name: node_exporter
     state: restarted
+    daemon_reload: true
   register: node_exporter_status
   notify: Ensure node-exporter service is running
 
 - name: Ensure node-exporter service is running
   ansible.builtin.assert:
     that: "node_exporter_status.status.ActiveState == 'active'"
-    fail_msg: "The node-exporter service is not active !"
-    success_msg: "The node-exporter service is active !"
+    fail_msg: "the node-exporter service is not active !"
+    success_msg: "the node-exporter service is active !"

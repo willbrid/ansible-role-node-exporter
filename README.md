@@ -38,7 +38,7 @@ vim $HOME/install-node-exporter/requirements.yml
 
 ```yaml
 - name: ansible-role-node-exporter
-  src: https://github.com/willbrid/ansible-role-node-exporter.git
+  src: git+https://github.com/willbrid/ansible-role-node-exporter.git
   version: v0.1.0
 ```
 

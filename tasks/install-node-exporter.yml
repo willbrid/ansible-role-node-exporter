@@ -1,0 +1,36 @@
+---
+- name: Create group for node-exporter user
+  ansible.builtin.group:
+    name: "{{ node_exporter_group }}"
+    state: present
+    gid: "{{ (node_exporter_group_gid == -1) | ternary(omit, node_exporter_group_gid) }}"
+    system: true
+
+- name: Create user for node-exporter
+  ansible.builtin.user:
+    name: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    uid: "{{ (node_exporter_user_uid == -1) | ternary(omit, node_exporter_user_uid) }}"
+    system: true
+    create_home: false
+
+- name: Download node-exporter archive
+  ansible.builtin.get_url:
+    url: "{{ node_exporter_download_url }}"
+    dest: "/tmp/{{ node_exporter_archive_filename }}"
+    mode: 0755
+
+- name: Extract node-exporter archive
+  ansible.builtin.unarchive:
+    src: "/tmp/{{ node_exporter_archive_filename }}"
+    dest: "/tmp"
+    remote_src: true
+
+- name: Copy the node-exporter binary in "{{ node_exporter_bin_dir }}"
+  ansible.builtin.copy:
+    src: "/tmp/{{ node_exporter_archive_filename.split('.tar.gz')[0] }}/node_exporter"
+    dest: "{{ node_exporter_bin_dir }}/node_exporter"
+    mode: 0755
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
+    remote_src: true

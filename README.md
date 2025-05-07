@@ -8,8 +8,7 @@ Le rôle **ansible-role-node-exporter** permet d'installer et de configurer **no
 
 Un système Linux utilisant **systemd** comme gestionnaire de services.
 
-Description des Variables
---------------
+## Description des Variables
 
 |Nom|Type|Description|Obligatoire|Valeur par défaut|
 |---|----|-----------|-----------|-----------------|

@@ -6,7 +6,7 @@ Le rôle **ansible-role-node-exporter** permet d'installer et de configurer **no
 
 ## Exigences
 
-Un système Linux utilisant **systemd** comme gestionnaire de services.
+- Distributions **RedHat** ou **Debian** utilisant **systemd** comme gestionnaire de services.
 
 ## Description des Variables
 

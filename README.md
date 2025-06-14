@@ -29,7 +29,7 @@ Aucune.
 - Installation du rôle
 
 ```bash
-mkdir -p $HOME/install-node-exporter/roles
+mkdir -p $HOME/install-node-exporter
 ```
 
 ```bash
@@ -43,7 +43,7 @@ vim $HOME/install-node-exporter/requirements.yml
 ```
 
 ```bash
-cd $HOME/install-node-exporter && ansible-galaxy install -r requirements.yml --roles-path roles
+cd $HOME/install-node-exporter && ansible-galaxy install --force -r requirements.yml
 ```
 
 > Note: On suppose qu’un fichier `hosts.ini` (dans le repertoire `$HOME/install-repo-installer`) est défini, contenant l’inventaire des serveurs de groupe `monitoring`, utilisant des distributions `Debian` ou `RedHat`.

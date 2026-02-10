@@ -2,31 +2,31 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/willbrid/ansible-role-node-exporter/blob/main/LICENSE) [![CI](https://github.com/willbrid/ansible-role-node-exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/willbrid/ansible-role-node-exporter/actions/workflows/ci.yml)
 
-Le rôle **ansible-role-node-exporter** permet d'installer et de configurer **node_exporter**, un agent Prometheus conçu pour exposer les métriques matérielles et système des environnements Linux.
+The **ansible-role-node-exporter** role allows you to install and configure **node_exporter**, a Prometheus agent designed to expose hardware and system metrics of Linux environments.
 
-## Exigences
+## Requirements
 
-- Distributions **RedHat** ou **Debian** utilisant **systemd** comme gestionnaire de services.
+- **RedHat** or **Debian** distributions using **systemd** as a service manager.
 
 ## Description des Variables
 
-|Nom|Type|Description|Obligatoire|Valeur par défaut|
-|---|----|-----------|-----------|-----------------|
-`node_exporter_version`|str|numéro de version de node_exporter. Format : x.y.z|non|`"1.9.0"`
-`node_exporter_port`|str|port d'écoute de node_exporter|non|`"9100"`
-`node_exporter_bin_dir`|str|répertoire d'installation du binaire de node_exporter|non|`"/usr/local/bin"`
-`node_exporter_user`|str|utilisateur système de node_exporter|non|`"node_exporter"`
-`node_exporter_user_uid`|int|uid de l'utilisateur système de node_exporter. -1 signifie aucune valeur|non|`-1`
-`node_exporter_group`|str|groupe de l'utilisateur système de node_exporter|non|`"node_exporter"`
-`node_exporter_group_gid`|int|gid du groupe de l'utilisateur système de node_exporter. -1 signifie aucune valeur|non|`-1`
+|Name|Type|Description|Mandatory|Default value|
+|----|----|-----------|---------|-------------|
+`node_exporter_version`|str|node_exporter version number. Format: x.y.z|no|`"1.9.0"`
+`node_exporter_port`|str|node_exporter listening port|no|`"9100"`
+`node_exporter_bin_dir`|str|node_exporter binary installation directory|no|`"/usr/local/bin"`
+`node_exporter_user`|str|node_exporter system user|no|`"node_exporter"`
+`node_exporter_user_uid`|int|the system user ID of node_exporter. -1 means no value|no|`-1`
+`node_exporter_group`|str|node_exporter system user group|no|`"node_exporter"`
+`node_exporter_group_gid`|int|GID of the system user node_exporter. -1 means no value|no|`-1`
 
-## Dépendances
+## Dependencies
 
-Aucune.
+None.
 
-## Exemple Playbook
+## Example Playbook
 
-- Installation du rôle
+- Role installation
 
 ```bash
 mkdir -p $HOME/install-node-exporter
@@ -46,9 +46,9 @@ vim $HOME/install-node-exporter/requirements.yml
 cd $HOME/install-node-exporter && ansible-galaxy install --force -r requirements.yml
 ```
 
-> Note: On suppose qu’un fichier `hosts.ini` (dans le repertoire `$HOME/install-repo-installer`) est défini, contenant l’inventaire des serveurs de groupe `monitoring`, utilisant des distributions `Debian` ou `RedHat`.
+> Note: It is assumed that a `hosts.ini` file (in the `$HOME/install-repo-installer` directory) is defined, containing the inventory of the `monitoring` group servers, using `Debian` or `RedHat` distributions.
 
-- Utilisation du rôle dans un playbook
+- Using the role in a playbook
 
 ```bash
 vim $HOME/install-node-exporter/playbook.yml
@@ -70,10 +70,10 @@ vim $HOME/install-node-exporter/playbook.yml
 cd $HOME/install-node-exporter && ansible-playbook -i hosts.ini playbook.yml
 ```
 
-## Licence
+## License
 
 MIT
 
-## Informations sur l'auteur
+## Author Information
 
 William Bridge NGASSAM

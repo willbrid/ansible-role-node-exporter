@@ -8,7 +8,7 @@ The **ansible-role-node-exporter** role allows you to install and configure **no
 
 - **RedHat** or **Debian** distributions using **systemd** as a service manager.
 
-## Description des Variables
+## Description of Variables
 
 |Name|Type|Description|Mandatory|Default value|
 |----|----|-----------|---------|-------------|
